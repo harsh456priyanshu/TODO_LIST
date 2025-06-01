@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { nanoid } from 'nanoid'
+
+import Read from "./Components/Read"
+import Create from "./Components/Create"
 
 const App = () => {
 
-   const [title, settitle] = useState("");
-
-  const [todos , settodos] = useState([
+   const [todos , settodos] = useState([
     {
       id: 1,
       title:"Do Your Pending Work",
@@ -13,44 +13,10 @@ const App = () => {
     }
   ]);
 
-  const SubmitHandler = (e) => {
-    e.preventDefault();
-
-    const newtodo ={
-      id: nanoid(),
-      title: title,
-      isCompleted: false,
-    };
-
-    let copytodos = [...todos];
-    copytodos.push(newtodo);
-    settodos(copytodos);
-
-    settitle("");
-  }
-
-  const rendertodos = todos.map((todo) => {
-    return <li key={todo.id}>{todo.title}</li>
-  })
-
-
   return (
-    <div>
-      <h1>Create Task</h1>
-      <form onSubmit={SubmitHandler}>
-        <input 
-        onChange={(e) => settitle(e.target.value)}
-        value={title}
-        type="text"
-         placeholder="title"
-          />
-          <br />
-          <br />
-          <button>Create Todo</button>
-      </form>
-      <hr />
-      <h1>Pending Todos</h1>
-      <div>{rendertodos}</div>
+    <div className=" flex w-screen h-screen bg-gray-800 p-10">
+     <Create todos={todos} settodos={settodos} />
+      <Read todos={todos} settodos={settodos} />
     </div>
   )
 }
