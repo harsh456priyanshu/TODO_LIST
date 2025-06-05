@@ -1,10 +1,9 @@
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { todocontext } from "../Wrapper";
 
-const Read = (props) => {
-    const todos = props.todos;
-    const settodos = props.settodos;
-
-
+const Read = () => {
+    const [todos , settodos] = useContext(todocontext);
       
 
     const rendertodos = todos.map((todo) => {
